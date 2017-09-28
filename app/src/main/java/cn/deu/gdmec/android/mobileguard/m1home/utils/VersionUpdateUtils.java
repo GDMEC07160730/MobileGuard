@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.DialogPreference;
-import android.provider.Settings;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -21,8 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-
-import java.util.logging.LogRecord;
 
 import cn.deu.gdmec.android.mobileguard.R;
 import cn.deu.gdmec.android.mobileguard.m1home.HomeActivity;
@@ -88,7 +84,7 @@ public class VersionUpdateUtils {
                 if (!mVersion.equals(versionEntity.versioncode)) {
                     handler.sendEmptyMessage(MESSAGE_SHOW_DIALOG);
 //                     System.out.println(versionEntity.description);
-//                    DownloadUtils downloadUtils = new DownloadUtils();
+//                  DownloadUtils downloadUtils = new DownloadUtils();
 //                    downloadUtils.downloadApk(versionEntity.apkurl,"mobileguard.apk",context);
                 }
             }
@@ -96,7 +92,7 @@ public class VersionUpdateUtils {
             handler.sendEmptyMessage(MESSAGE_IO_ERROR);
             e.printStackTrace();
         } catch (JSONException e) {
-            handler.sendEmptyMessage(MESSAGE_IO_ERROR);
+            handler.sendEmptyMessage(MESSAGE_JSON_ERROR);
             e.printStackTrace();
         }
     }
@@ -117,6 +113,7 @@ public class VersionUpdateUtils {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
+                enterHome();
             }
 
         });
