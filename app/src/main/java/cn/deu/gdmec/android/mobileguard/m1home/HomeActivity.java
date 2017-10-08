@@ -137,7 +137,6 @@ public class HomeActivity extends AppCompatActivity {
         edit.putString("PhoneAntiTheftPWD", MD5Utils.encode(affirmPwsd));
         edit.commit();
     }
-
     private String getPassword() {
         String password=msharedPreferences.getString("PhoneAntiTheftPWD",null);
         if (TextUtils.isEmpty(password)){
