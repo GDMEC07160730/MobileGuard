@@ -18,7 +18,5 @@ public class MyUtils {
             e.printStackTrace();
             return "";
         }
-
-
     }
 }

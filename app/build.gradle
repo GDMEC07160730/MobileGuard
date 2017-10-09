@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        applicationId "cn.deu.gdmec.android.mobileguard"
+        applicationId "cn.edu.gdmec.android.mobileguard"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -30,7 +30,6 @@ android {
         exclude 'META-INF/LGPL2.1'
     }
 }
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/commons-codec-1.9.jar')
