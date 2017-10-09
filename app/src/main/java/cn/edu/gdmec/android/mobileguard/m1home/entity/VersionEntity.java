@@ -1,4 +1,4 @@
-package cn.deu.gdmec.android.mobileguard.m1home.entity;
+package cn.edu.gdmec.android.mobileguard.m1home.entity;
 
 /**
  * Created by LYB on 2017/9/26.

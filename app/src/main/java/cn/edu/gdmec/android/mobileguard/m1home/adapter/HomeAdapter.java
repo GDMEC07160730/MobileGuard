@@ -1,4 +1,4 @@
-package cn.deu.gdmec.android.mobileguard.m1home.adapter;
+package cn.edu.gdmec.android.mobileguard.m1home.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cn.deu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.R;
 
 
 /**

@@ -1,11 +1,8 @@
-package cn.deu.gdmec.android.mobileguard.m1home;
+package cn.edu.gdmec.android.mobileguard.m1home;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.PersistableBundle;
-import android.provider.Settings;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -13,11 +10,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
-import cn.deu.gdmec.android.mobileguard.R;
-import cn.deu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
-import cn.deu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
-import cn.deu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
-import cn.deu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
