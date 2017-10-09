@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        if (isSetPassword()) {
+                        if (isSetUpPassword()) {
                             showInterPswdDialog();
                         } else {
                             showUpSetPswdDialog();
@@ -141,7 +141,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         return password;
     }
-    private boolean isSetPassword() {
+    private boolean isSetUpPassword() {
         String password=msharedPreferences.getString("PhoneAntiTheftPWD",null);
         if (TextUtils.isEmpty(password)){
             return false;
