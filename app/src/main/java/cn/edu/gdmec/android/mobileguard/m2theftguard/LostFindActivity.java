@@ -13,6 +13,7 @@ public class LostFindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_find);
         startSetUp1Activity();
+        
     }
     private void startSetUp1Activity(){
         Intent intent=new Intent(LostFindActivity.this,Setup1Activity.class);
