@@ -76,6 +76,15 @@
                     android:gravity="center"
                     android:text="远程锁屏"
                     android:textColor="@color/purple"/>
+                <TextView
+                    style="@style/textview16sp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/delete_data"
+                    android:gravity="center"
+                    android:text="远程删除数据"
+                    android:textColor="@color/purple"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

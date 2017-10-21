@@ -45,6 +45,15 @@
                 android:hint="请输入安全号码"
                 android:inputType="phone"
                 android:textColorHint="@color/purple"/>
+            <Button
+                android:id="@+id/btn_addcontact"
+                android:layout_width="55dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/add"/>
+            
+            
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
