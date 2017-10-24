@@ -38,7 +38,7 @@ public class GPSLocationService extends Service{
         String name=lm.getBestProvider(criteria,true);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
-                &&ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)
+                && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)
         !=PackageManager.PERMISSION_GRANTED){
             return;
         }
@@ -56,7 +56,7 @@ public class GPSLocationService extends Service{
             sb.append("Latitude:"+location.getLatitude()+"\n");
             String result=sb.toString();
             SharedPreferences sp=getSharedPreferences("config",MODE_PRIVATE);
-            String safenumber=sp.getString("safephone","");
+            String safenumber=sp.getString("safephone", "");
             SmsManager.getDefault().sendTextMessage(safenumber,null,result,null,null);
             stopSelf();
         }
@@ -72,7 +72,7 @@ public class GPSLocationService extends Service{
         }
 
         @Override
-        public void onProviderDisabled(String provider) {
+        public void onProviderDisabled(String provide) {
 
         }
     }

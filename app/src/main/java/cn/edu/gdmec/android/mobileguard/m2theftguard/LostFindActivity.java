@@ -82,19 +82,12 @@ public class LostFindActivity extends AppCompatActivity implements View.OnClickL
     switch (view.getId()){
         case R.id.rl_inter_setup_wizard:
         startSetUp1Activity();
-        break;
+            break;
         case R.id.imgv_leftbtn:
         finish();
-        break;
+            break;
 
-}
+        }
     }
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
-
-
-
 
 }
