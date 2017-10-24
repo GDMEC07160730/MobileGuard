@@ -26,7 +26,8 @@ public class SmsLostFindReceiver extends BroadcastReceiver{
     private ComponentName componentName;
     @Override
     public void onReceive(Context context, Intent intent) {
-        sharedPreferences=context.getSharedPreferences("config", Activity.MODE_PRIVATE);
+        sharedPreferences=context.getSharedPreferences("config",
+                Activity.MODE_PRIVATE);
         boolean protecting=sharedPreferences.getBoolean("protecting",true);
         if (protecting){
             DevicePolicyManager dpm =
@@ -44,7 +45,8 @@ public class SmsLostFindReceiver extends BroadcastReceiver{
                 if (!TextUtils.isEmpty(safephone)&sender.equals(safephone)){
                     if ("#*location*#".equals(body)){
                         Log.i(TAG,"返回位置信息.");
-                        Intent service=new Intent(context, GPSLocationService.class);
+                        Intent service=new Intent(context,
+                                GPSLocationService.class);
                         context.startService(service);
                         abortBroadcast();
                     }else if ("#*alarm*#".equals(body)){

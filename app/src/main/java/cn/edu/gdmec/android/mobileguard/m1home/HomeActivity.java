@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
+ 
     private void showSetUpPswdDialog() {
         final SetUpPasswordDialog setUpPasswordDialog = new SetUpPasswordDialog(
                 HomeActivity.this);
