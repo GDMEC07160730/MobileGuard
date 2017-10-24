@@ -76,6 +76,7 @@ public class LostFindActivity extends AppCompatActivity implements View.OnClickL
         Intent intent=new Intent(LostFindActivity.this,Setup1Activity.class);
         startActivity(intent);
         finish();
+        
     }
     @Override
     public void onClick(View view) {
