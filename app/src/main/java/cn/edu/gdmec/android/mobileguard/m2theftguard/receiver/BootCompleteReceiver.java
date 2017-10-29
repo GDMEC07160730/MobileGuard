@@ -6,7 +6,7 @@ import android.content.Intent;
 
 import cn.edu.gdmec.android.mobileguard.App;
 
-public class bootCompleteReceiver extends BroadcastReceiver {
+public class BootCompleteReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {

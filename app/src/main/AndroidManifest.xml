@@ -37,7 +37,7 @@
         <activity android:name=".m2theftguard.ContactSelectActivity" />
 
         <receiver
-            android:name=".m2theftguard.receiver.bootCompleteReceiver"
+            android:name=".m2theftguard.receiver.BootCompleteReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

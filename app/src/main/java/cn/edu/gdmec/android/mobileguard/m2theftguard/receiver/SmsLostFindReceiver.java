@@ -38,7 +38,6 @@ public class SmsLostFindReceiver extends BroadcastReceiver{
                 String sender=smsMessage.getOriginatingAddress();
                 if (sender.startsWith("+86")){
                     sender=sender.substring(3,sender.length());
-
                 }
                 String body=smsMessage.getMessageBody();
                 String safephone=sharedPreferences.getString("safephone",null);
