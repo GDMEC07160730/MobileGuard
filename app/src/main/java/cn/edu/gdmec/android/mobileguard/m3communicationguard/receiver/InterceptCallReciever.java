@@ -24,18 +24,20 @@ import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberD
  * Created by LYB on 2017/11/2.
  */
 
-public class InterceptCallReciever extends BroadcastReceiver {
+public class InterceptCallReciever extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
-        SharedPreferences mSP = context.getSharedPreferences("config", Context.MODE_PRIVATE);
-        boolean BlackNumStatus = mSP.getBoolean("BlackNumStatus", true);
-        if(!BlackNumStatus) {
+        SharedPreferences mSP=context.getSharedPreferences("config",
+                Context.MODE_PRIVATE);
+        boolean BlackNumStatus = mSP.getBoolean("BlackNumStatus",true);
+        if (!BlackNumStatus){
             return;
         }
-        BlackNumberDao dao = new BlackNumberDao(context);
-        if (!intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
-            String mIncomingNumber = "";
-            TelephonyManager tManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
+        BlackNumberDao dao=new BlackNumberDao(context);
+        if (!intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)){
+            String mIncomingNumber="";
+            TelephonyManager tManager = (TelephonyManager) context
+                    .getSystemService(Service.TELEPHONY_SERVICE);
             switch (tManager.getCallState()){
                 case TelephonyManager.CALL_STATE_RINGING:
                     mIncomingNumber = intent.getStringExtra("incoming_number");
@@ -43,12 +45,13 @@ public class InterceptCallReciever extends BroadcastReceiver {
                         return;
                     }
                     int blackContactMode = dao.getBlackContactMode(mIncomingNumber);
-                    if (blackContactMode == 1 || blackContactMode==3) {
-                        Uri uri = Uri.parse("content://call_log_calls");
+                    if (blackContactMode ==1||blackContactMode ==3){
+                        Uri uri=Uri.parse("content://call_log/calls");
                         context.getContentResolver().registerContentObserver(
                                 uri,
                                 true,
-                                new CallLogObserver(new Handler(),mIncomingNumber,context));
+                                new CallLogObserver(new Handler(),mIncomingNumber,
+                                        context));
                         endCall(context);
                     }
                     break;
@@ -56,45 +59,49 @@ public class InterceptCallReciever extends BroadcastReceiver {
         }
     }
 
-   private class CallLogObserver extends ContentObserver {
-       private String incomingNumber;
-       private Context context;
 
-       public CallLogObserver(Handler handler, String incomingNumber, Context context) {
-           super(handler);
-           this.incomingNumber = incomingNumber;
-           this.context = context;
-       }
 
-       @Override
-       public void onChange(boolean selfChange) {
-           Log.i("CallLogObserver", "呼叫数据库的内容变化了。");
-           context.getContentResolver().unregisterContentObserver(this);
-           deleteCallLog(incomingNumber, context);
-           super.onChange(selfChange);
-       }
-   }
+    private class CallLogObserver extends ContentObserver {
+        private  String incomingNumber;
+        private Context context;
 
- public  void deleteCallLog(String incomingNumber, Context context){
-     ContentResolver resolver = context.getContentResolver();
-     Uri uri = Uri.parse("content://call_Log/calls");
-     Cursor cursor = resolver.query(uri, new String[]{ "_id"},"number=?", new String[]{ incomingNumber},
-             "_id desc limit 1");
-     if(cursor.moveToNext()){
-         String id = cursor.getString(0);
-         resolver.delete(uri, "_id=?", new String[] {id});
-     }
- }
+        public CallLogObserver(Handler handler, String IncomingNumber,
+                               Context context) {
+            super(handler);
+            this.incomingNumber=IncomingNumber;
+            this.context=context;
+        }
 
-public void endCall(Context context){
-    try{
-        Class clazz = context.getClassLoader().loadClass("amdroid.os.ServiceManager");
-        Method method = clazz.getDeclaredMethod("getService", String.class);
-        IBinder iBinder = (IBinder) method.invoke(null, Context.TELEPHONY_SERVICE);
-        ITelephony iTelephony = ITelephony.Stub.asInterface(iBinder);
-        iTelephony.endCall();
-    }catch (Exception e){
-        e.printStackTrace();
+        @Override
+        public void onChange(boolean selfChange) {
+            Log.i("CallLogObserver","呼叫记录数据库的内容变化了");
+            context.getContentResolver().unregisterContentObserver(this);
+            deleteCallLog(incomingNumber,context);
+            super.onChange(selfChange);
+        }
     }
-  }
+
+    private void deleteCallLog(String incomingNumber, Context context) {
+        ContentResolver resolver=context.getContentResolver();
+        Uri uri=Uri.parse("content://call_log/calls");
+        Cursor cursor=resolver.query(uri,new String[]{ "_id" },"number=?",
+                new String[]{ incomingNumber },"_id desc limit 1");
+        if (cursor.moveToNext()){
+            String id=cursor.getString(0);
+            resolver.delete(uri,"_id=?",new String[]{ id });
+        }
+    }
+    public void endCall(Context context) {
+        try {
+            Class clazz = context.getClassLoader().loadClass(
+                    "android.os.ServiceManager");
+            Method method = clazz.getDeclaredMethod("getService", String.class);
+            IBinder ibinder = (IBinder)method.invoke(null,
+                    Context.TELEPHONY_SERVICE);
+            ITelephony itelephony = ITelephony.Stub.asInterface(ibinder);
+            itelephony.endCall();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
