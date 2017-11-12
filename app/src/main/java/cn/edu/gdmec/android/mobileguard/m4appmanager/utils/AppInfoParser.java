@@ -23,7 +23,7 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 public class AppInfoParser {
     public static List<AppInfo>getAppInfos(Context context) {
         PackageManager pm = context.getPackageManager();
-        List<PackageInfo> packInfos = pm.getInstalledPackages(0);
+        List<PackageInfo> packInfos = pm.getInstalledPackages(PackageManager.GET_PERMISSIONS + PackageManager.GET_SIGNATURES);
         List<AppInfo> appinfos = new ArrayList<AppInfo>();
         for (PackageInfo packInfo : packInfos) {
             AppInfo appinfo = new AppInfo();
@@ -42,8 +42,8 @@ public class AppInfoParser {
             appinfo.version = version;
             appinfo.InstallTime = new Date(packInfo.firstInstallTime).toLocaleString();
             try {
-                PackageInfo packinfo = pm.getPackageInfo(packname, PackageManager.GET_SIGNATURES);
-                byte[] ss = packinfo.signatures[0].toByteArray();
+                //PackageInfo packinfo = pm.getPackageInfo(packname, PackageManager.GET_SIGNATURES);
+                byte[] ss = packInfo.signatures[0].toByteArray();
                 CertificateFactory cf = CertificateFactory.getInstance("X509");
                 X509Certificate cert = (X509Certificate) cf.generateCertificate(
                         new ByteArrayInputStream(ss));
@@ -53,17 +53,27 @@ public class AppInfoParser {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            PackageInfo packinfo1 = null;
-            try {
-                packinfo1 = pm.getPackageInfo(packname, PackageManager.GET_PERMISSIONS);
-                if (packinfo1.requestedPermissions!=null){
-                    for (String pio : packinfo1.requestedPermissions){
+            //PackageInfo packinfo1 = null;
+            /*try {
+                //PackageInfo packinfo1 = pm.getPackageInfo(packname, PackageManager.GET_PERMISSIONS);
+                if (packInfo.requestedPermissions!=null){
+                    for (String pio : packInfo.requestedPermissions){
                         appinfo.permissions= appinfo.permissions+pio+"\n";
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+            }*/
+            StringBuilder sb = new StringBuilder();
+            if (packInfo.requestedPermissions != null) {
+                for (String per:packInfo.requestedPermissions) {
+                    sb.append(per + "\n");
+                }
+                appinfo.permissions = sb.toString();
             }
+
+
+
             int flags = packInfo.applicationInfo.flags;
             if ((ApplicationInfo.FLAG_EXTERNAL_STORAGE & flags) !=0) {
                 appinfo.isInRoom=false;
