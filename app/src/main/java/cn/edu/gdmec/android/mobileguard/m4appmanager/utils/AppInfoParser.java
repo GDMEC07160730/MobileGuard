@@ -42,6 +42,7 @@ public class AppInfoParser {
             String version = packInfo.versionName;
             appinfo.version = version;
             appinfo.InstallTime = new Date(packInfo.firstInstallTime).toLocaleString();
+
             try {
                 //PackageInfo packinfo = pm.getPackageInfo(packname, PackageManager.GET_SIGNATURES);
                 byte[] ss = packInfo.signatures[0].toByteArray();
