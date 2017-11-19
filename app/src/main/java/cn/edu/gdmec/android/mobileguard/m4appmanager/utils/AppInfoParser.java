@@ -11,6 +11,7 @@ import java.io.File;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 public class AppInfoParser {
     public static List<AppInfo>getAppInfos(Context context) {
         PackageManager pm = context.getPackageManager();
-        List<PackageInfo> packInfos = pm.getInstalledPackages(PackageManager.GET_PERMISSIONS + PackageManager.GET_SIGNATURES);
+        List<PackageInfo> packInfos = pm.getInstalledPackages(PackageManager.GET_PERMISSIONS + PackageManager.GET_SIGNATURES+PackageManager.GET_ACTIVITIES);
         List<AppInfo> appinfos = new ArrayList<AppInfo>();
         for (PackageInfo packInfo : packInfos) {
             AppInfo appinfo = new AppInfo();
@@ -71,8 +72,8 @@ public class AppInfoParser {
                 }
                 appinfo.permissions = sb.toString();
             }
-
-
+           //获取活动
+            appinfo.appActivities = Arrays.toString(packInfo.activities);
 
             int flags = packInfo.applicationInfo.flags;
             if ((ApplicationInfo.FLAG_EXTERNAL_STORAGE & flags) !=0) {
