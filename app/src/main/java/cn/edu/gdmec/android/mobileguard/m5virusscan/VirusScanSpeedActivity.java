@@ -55,6 +55,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                  case SCAN_BENGIN:
                      mScanAppTV.setText("初始化杀毒引擎中...");
                      break;
+
                  case SCANNING:
                      ScanAppInfo info = (ScanAppInfo) msg.obj;
                      mScanAppTV.setText("正在扫描:" + info.appName);
@@ -115,8 +116,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                     System.out.println(apkpath);
                     System.out.println(md5info);
                     AntiVirusDao antiVirusDao = new AntiVirusDao(
-                            VirusScanSpeedActivity.this.getApplicationContext()
-                    );
+                            VirusScanSpeedActivity.this.getApplicationContext());
                     String result = antiVirusDao.checkVirus(md5info);
                     msg = Message.obtain();
                     msg.what = SCANNING;
@@ -152,7 +152,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
         findViewById(R.id.rl_titlebar).setBackgroundColor(
                 getResources().getColor(R.color.light_blue));
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
-        ((TextView) findViewById(R.id.tv_title)).setText("病毒差杀进度");
+        ((TextView) findViewById(R.id.tv_title)).setText("病毒查杀进度");
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
         mProcessTV = (TextView) findViewById(R.id.tv_scanprocess);
@@ -193,6 +193,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                 } else if (isStop) {
                     //重新扫描
                     startAnim();
+                    scanVirus();
                     mCancleBtn.setBackgroundResource(R.drawable.cancel_scan_btn_selector);
                 }
                 break;
