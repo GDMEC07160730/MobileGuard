@@ -91,9 +91,7 @@ public class CleanCacheActivity extends AppCompatActivity implements View.OnClic
                     message.obj = memory;
                     mHandler.sendMessageDelayed(message, 200);
                 }
-            }
-
-            ;
+            };
         }.start();
     }
 

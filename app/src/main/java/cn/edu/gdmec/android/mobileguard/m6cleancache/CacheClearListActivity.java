@@ -13,6 +13,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -79,6 +80,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cache_clear_list);
         pm=getPackageManager();
         initView();
@@ -131,7 +133,8 @@ public void getCacheSize(PackageInfo info){
     try{
         Method method=PackageManager.class.getDeclaredMethod(
                 "getPackageSizeInfo",String.class, IPackageStatsObserver.class);
-    } catch (NoSuchMethodException e) {
+        method.invoke(pm,info.packageName,new MyPackObserver(info));
+    } catch (Exception e) {
         e.printStackTrace();
     }
 }
