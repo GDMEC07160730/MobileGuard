@@ -104,5 +104,4 @@
         <activity android:name=".m6cleancache.CacheClearListActivity">
             </activity>
     </application>
-
 </manifest>
