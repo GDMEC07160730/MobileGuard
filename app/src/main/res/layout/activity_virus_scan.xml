@@ -48,10 +48,11 @@
         <ImageView
             android:id="@+id/imgv_quickscan"
             style="@style/wrapcontent"
-            android:src="@drawable/quickscan_icon"
+
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/quickscan_icon"/>
 
         <TextView
             android:id="@+id/tv_allscan"

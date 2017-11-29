@@ -27,11 +27,11 @@ import java.util.List;
 import java.util.Locale;
 
 import cn.edu.gdmec.android.mobileguard.R;
-import cn.edu.gdmec.android.mobileguard.m1home.utils.Urlclient;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.adapter.ScanVirusAdapter;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
+import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.UrlClient;
 
 /**
  * Created by LYB on 2017/11/16.
@@ -100,12 +100,12 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
         Intent intent = getIntent();
         boolean cloudscan = intent.getBooleanExtra("cloud", false);
         if (cloudscan) {
-            cloudscanVirus();
+            cloudScanVirus();
         } else {
             scanVirus();
         }
     }
-    private void cloudscanVirus(){
+    private void cloudScanVirus(){
         flag=true;
         List<PackageInfo>installedPackages=pm.getInstalledPackages(0);
         total=installedPackages.size();
@@ -193,8 +193,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
 
         @Override
         protected ScanAppInfo doInBackground(ScanAppInfo... scanAppInfos) {
-            String apiResult = Urlclient.UrlPost(scanAppInfos[0].virusScanUrl,
-                    "{\"md5\":\"" + scanAppInfos[0].md5info + "\"}");
+            String apiResult = UrlClient.UrlPost(scanAppInfos[0].virusScanUrl,"{\"md5\":\""+scanAppInfos[0].md5info+"\"}");
             try {
                 JSONObject jsonObject = new JSONObject(apiResult);
                 scanAppInfos[0].isVirus = jsonObject.getBoolean("isVirus");

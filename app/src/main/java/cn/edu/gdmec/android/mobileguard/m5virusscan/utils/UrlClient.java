@@ -1,8 +1,4 @@
-package cn.edu.gdmec.android.mobileguard.m1home.utils;
-
-/**
- * Created by asd on 2017/11/29.
- */
+package cn.edu.gdmec.android.mobileguard.m5virusscan.utils;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -16,7 +12,7 @@ import java.net.URL;
  * Created by Administrator on 2017/11/28.
  */
 
-public class Urlclient{
+public class UrlClient {
     public static String UrlPost(String url, String content) {
         try {
             URL mUrl = new URL(url);
@@ -55,13 +51,13 @@ public class Urlclient{
             int respondCode = mHttpURLConnection.getResponseCode();
             //Log.d("respondCode","respondCode="+respondCode );
             // 获取返回内容类型
-            String type = mHttpURLConnection.getContentType();
+            //String type = mHttpURLConnection.getContentType();
             //Log.d("type", "type="+type);
             // 获取返回内容的字符编码
-            String encoding = mHttpURLConnection.getContentEncoding();
+            //String encoding = mHttpURLConnection.getContentEncoding();
             //Log.d("encoding", "encoding="+encoding);
             // 获取返回内容长度，单位字节
-            int length = mHttpURLConnection.getContentLength();
+            //int length = mHttpURLConnection.getContentLength();
             //Log.d("length", "length=" + length);
 
             if (respondCode == 200) {

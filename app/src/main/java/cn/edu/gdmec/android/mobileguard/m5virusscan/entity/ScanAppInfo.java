@@ -14,4 +14,5 @@ public class ScanAppInfo {
     public Drawable appicon;
     public String virusScanUrl;
     public String md5info;
+
 }

@@ -56,8 +56,9 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
                 mDbVersionTV = (TextView) findViewById(R.id.tv_scan_version);
                 mDbVersionTV.setText("病毒数据库版本:" + mVersion);
                 UpdateDb(mVersion);
+                super.handleMessage(msg);
             }
-            super.handleMessage(msg);
+
         }
     };
     VersionUpdateUtils.DownloadCallback downloadCallback = new VersionUpdateUtils.DownloadCallback() {
@@ -136,7 +137,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
                 Intent intent=new Intent(this,VirusScanActivity.class);
                 intent.putExtra("cloud",true);
                 startActivity(intent);
-
+                break;
         }
     }
 }
