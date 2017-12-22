@@ -40,6 +40,7 @@ public class OperatorSetActivity extends AppCompatActivity implements View.OnCli
                 R.layout.item_spinner_operatorset, R.id.tv_provice, operators);
         mSelectSP.setAdapter(mSelectadapter);
         findViewById(R.id.btn_operator_finish).setOnClickListener(this);
+
     }
     @Override
     public void onClick(View v) {
