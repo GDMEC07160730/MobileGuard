@@ -42,7 +42,7 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 public class VersionUpdateUtils {
     private String mVersion;
     private Activity context;
-    private ProgressDialog mProgressDialog;
+
     private VersionEntity versionEntity;
 
 

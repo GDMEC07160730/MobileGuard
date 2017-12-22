@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cn.edu.gdmec.android.mobileguard">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,6 +18,9 @@
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
     <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".App"
@@ -26,14 +30,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".m1home.HomeActivity">
+        <activity android:name=".SplashActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
         </activity>
+            <activity android:name=".m1home.HomeActivity"/>
+
+
         <activity android:name=".m2theftguard.LostFindActivity" />
         <activity android:name=".m2theftguard.Setup1Activity" />
         <activity android:name=".m2theftguard.Setup2Activity" />
@@ -103,5 +109,15 @@
         <activity android:name=".m6cleancache.CleanCacheActivity"/>
         <activity android:name=".m6cleancache.CacheClearListActivity">
             </activity>
+        <activity android:name=".m9advancedtools.NumBelongtoActivity" />
+        <activity android:name=".m9advancedtools.AdvancedToolsActivity" />
+
+        <service
+            android:name=".m9advancedtools.service.AppLockService"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <activity android:name=".m9advancedtools.EnterPswActivity"/>
+        <activity android:name=".m9advancedtools.AppLockActivity" ></activity>
     </application>
 </manifest>
