@@ -813,6 +813,7 @@ public class ExampleInstrumentedTest {
         result = mDevice.findObject(new UiSelector().textStartsWith("云查杀"));
         result.clickAndWaitForNewWindow();
         //result = mDevice.findObject(new UiSelector().className("android.widget.Button"));
+
         //result.clickAndWaitForNewWindow();
         UiScrollable  appList = new UiScrollable(new UiSelector().className("android.widget.ListView"));
         appList.flingToBeginning(30);
