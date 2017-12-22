@@ -113,6 +113,10 @@
             android:name=".m8trafficmonitor.service.TrafficMonitoringService"
             android:enabled="true"
             android:exported="true" />
+        <receiver
+            android:name=".m8trafficmonitor.reciever.BootCompleteReciever"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity android:name=".m8trafficmonitor.OperatorSetActivity" />
         <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity" />
@@ -125,12 +129,9 @@
             android:exported="true" />
 
         <activity android:name=".m9advancedtools.EnterPswActivity" />
-        <activity android:name=".m9advancedtools.AppLockActivity" />
+        <activity android:name=".m9advancedtools.AppLockActivity" ></activity>
 
-        <receiver
-            android:name=".m8trafficmonitor.reciever.BootCompleteReciever"
-            android:enabled="true"
-            android:exported="true" />
+
     </application>
 
 </manifest>

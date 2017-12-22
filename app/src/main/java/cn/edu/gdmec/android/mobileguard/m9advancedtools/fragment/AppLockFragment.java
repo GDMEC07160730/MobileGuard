@@ -27,6 +27,7 @@ import cn.edu.gdmec.android.mobileguard.App;
 import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.AppInfoParser;
+import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.utils.SystemInfoUtils;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.adapter.AppLockAdapter;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.db.dao.AppLockDao;
 
@@ -34,6 +35,7 @@ public class AppLockFragment extends Fragment {
     private Context context;
     private TextView mLockTV;
     private ListView mLockLV;
+    private CheckBox mLockCB;
     private AppLockDao dao;
     List<AppInfo> mLockApps = new ArrayList<AppInfo>();
     private AppLockAdapter adapter;
@@ -68,7 +70,27 @@ public class AppLockFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_app_lock, null);
         mLockTV = (TextView) view.findViewById(R.id.tv_lock);
         mLockLV = (ListView) view.findViewById(R.id.lv_lock);
+        mLockCB = (CheckBox) view.findViewById(R.id.cb_applock_service);
+        boolean running = SystemInfoUtils.isServiceRunning(context, "cn.edu.gdmec.t00385.android2016.myguard.m9advancedtools.service.AppLockService");
+        mLockCB.setChecked(running);
+        mLockCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                //Intent intent = new Intent(context, AppLockService.class);
+                final Intent intent = new Intent();
+                ComponentName componentName = new ComponentName("cn.edu.gdmec.android.mobileguard"
+                        ,"cn.edu.gdmec.android.mobileguard.m9advancedtools.service.AppLockService");
+                intent.setComponent(componentName);
+                //intent.setAction("cn.edu.gdmec.android.mobileguard.m9advancedtools.m9advancedtools.service.AppLockService");
 
+                if (b){
+                    context.startService(intent);
+                }else{
+                    context.stopService(intent);
+                }
+
+            }
+        });
         return view;
     }
 
@@ -118,7 +140,7 @@ public class AppLockFragment extends Fragment {
                         Animation.RELATIVE_TO_SELF, 0);
                 ta.setDuration(300);
                 view.startAnimation(ta);
-                new Thread() {
+                new Thread(){
                     public void run() {
                         try {
                             Thread.sleep(300);
@@ -136,10 +158,7 @@ public class AppLockFragment extends Fragment {
                             }
                         });
                     };
-
-
                 }.start();
-
             }
         });
     }
