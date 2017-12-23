@@ -754,6 +754,7 @@ public class ExampleInstrumentedTest {
         result = mDevice.findObject(new UiSelector().textStartsWith("手机防盗"));
         if(!result.exists()){
             throw new Exception("Can't lock App1.");
+
         }
     }
     @Test
