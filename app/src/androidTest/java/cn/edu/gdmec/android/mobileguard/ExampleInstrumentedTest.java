@@ -785,6 +785,7 @@ public class ExampleInstrumentedTest {
             throw new Exception("Can't find App lock.");
         }
     }
+
     @Test
     public void t38AppManagerActivities() throws Exception {
         result = mDevice.findObject(new UiSelector().textStartsWith("暂不升级"));
