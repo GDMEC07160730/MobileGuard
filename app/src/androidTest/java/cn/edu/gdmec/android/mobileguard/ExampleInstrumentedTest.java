@@ -809,6 +809,7 @@ public class ExampleInstrumentedTest {
         result = mDevice.findObject(new UiSelector().textStartsWith("手机杀毒"));
         result.clickAndWaitForNewWindow();
         sleep(1000);
+
         result = mDevice.findObject(new UiSelector().textStartsWith("暂不升级"));
         result.clickAndWaitForNewWindow();
         result = mDevice.findObject(new UiSelector().textStartsWith("云查杀"));
